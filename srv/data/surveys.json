@@ -1,0 +1,34 @@
+{
+  "surveys": [
+    {
+      "sid": "123",
+      "question": "Name a thing that your husband...",
+      "answers": [
+        { "answer": "Wedding Ring", "value": 32 },
+        { "answer": "New Car", "value": 24 },
+        { "answer": "Dinner Plans", "value": 16 },
+        { "answer": "Board games", "value": 8 },
+        { "answer": "Toasted Coconut", "value": 6 },
+        { "answer": "Peppermint", "value": 4 }
+      ]
+    },
+    {
+      "sid": "456",
+      "question": "what's the biggest thing...",
+      "answers": [
+        { "answer": "Wedding Ring", "value": 32 },
+        { "answer": "New Car", "value": 15 },
+        { "answer": "Dinner Plans", "value": 8 }
+      ]
+    },
+    {
+      "sid": "789",
+      "question": "name a holiday that...",
+      "answers": [
+        { "answer": "Wedding Ring", "value": 32 },
+        { "answer": "New Car", "value": 15 },
+        { "answer": "Dinner Plans", "value": 8 }
+      ]
+    }
+  ]
+}
