@@ -1,17 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>secret game project</h1>
+    <ControlBoard />
+    <br>
+    <button @click="makeSurveyRequest">make survey request</button>
+    <br>
+    <button @click="makeGameRequest">make game request</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import API from 'src/utils/API.js';
+import ControlBoard from 'src/components/ControlBoard.vue'
 
 export default {
   name: 'App',
+  methods: {
+    makeSurveyRequest: function() {
+      API.get('/survey').then(res => {
+        console.log(res);
+      })
+    },
+    makeGameRequest: function() {
+      API.get('/game').then(res => {
+        console.log(res);
+      })
+    }
+  },
   components: {
-    HelloWorld
+    ControlBoard
   }
 }
 </script>
