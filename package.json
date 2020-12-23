@@ -10,7 +10,9 @@
     "express:run": "vue-cli-service express:run"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "cors": "^2.8.5",
     "vue": "^2.6.11"
   },
   "devDependencies": {
