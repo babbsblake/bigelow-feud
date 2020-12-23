@@ -1,14 +1,14 @@
 <template>
   <div class="command-view">
     Command View
-    <control-board />
+    <control-center />
   </div>
 </template>
 <script>
-import ControlBoard from '../components/ControlBoard.vue'
+import ControlCenter from '../components/ControlCenter.vue'
 export default {
   components: {
-    ControlBoard
+    ControlCenter
   }
 }
 </script>

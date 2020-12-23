@@ -7,6 +7,7 @@
       :answer="answer.answer"
       :value="answer.value"
       :hidden="answer.hidden"
+      :selected="answer.selected"
       @click.native="() => clickAnswer(answer, index)"
     />
   </div>
@@ -42,6 +43,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .feud-board {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, 1fr);
