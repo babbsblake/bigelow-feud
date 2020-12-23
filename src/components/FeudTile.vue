@@ -5,7 +5,8 @@
         {{ answerNum }}
       </div>
     </div>
-    <div class="feud-tile">
+    <div class="feud-tile-selection" :class="{selected: selected}" />
+    <div class="feud-tile" :class="{selected: selected, hidden: hidden}">
       <div class="answer">
         {{ answer }}
       </div>
@@ -71,6 +72,19 @@ export default {
     opacity: 1;
   }
 }
+.feud-tile-selection {
+  opacity: 0;
+  transition: opacity 0.5s;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: inset 0px 0px 8px 2px yellow;
+
+  &.selected {
+    opacity: 1;
+  }
+}
 .feud-tile {
   display: grid;
   grid-template-columns: 1fr 50px;
@@ -83,7 +97,12 @@ export default {
     inset 1px 1px 1px 2px rgb(165, 165, 165);
   background: linear-gradient(rgb(16, 48, 122), rgb(22, 75, 200), rgb(16, 48, 122));
 
+  &.selected .answer {
+    color: grey;
+  }
+
   .answer {
+    transition: color 0.5s;
     padding: 10px 0px;
   }
   .value {
