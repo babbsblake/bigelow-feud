@@ -40,5 +40,7 @@ export default {
 <style lang="scss" scoped>
 .survey-selector {
   display: flex;
+  column-gap: 5px;
+  margin-bottom: 5px;
 }
 </style>

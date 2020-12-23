@@ -1,17 +1,12 @@
 <template>
   <div id="app">
-    <h1>secret game project</h1>
-    <ControlBoard />
-    <br>
-    <button @click="makeSurveyRequest">make survey request</button>
-    <br>
-    <button @click="makeGameRequest">make game request</button>
+    <h1>bigelow-feud</h1>
+    <router-view/>
   </div>
 </template>
 
 <script>
 import API from 'src/utils/API.js';
-import ControlBoard from 'src/components/ControlBoard.vue'
 
 export default {
   name: 'App',
@@ -28,7 +23,7 @@ export default {
     }
   },
   components: {
-    ControlBoard
+
   }
 }
 </script>

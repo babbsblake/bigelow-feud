@@ -51,7 +51,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.control-board {
 
-}
 </style>
