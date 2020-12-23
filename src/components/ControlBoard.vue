@@ -1,8 +1,11 @@
 <template>
   <div class="control-board">
-    Control Board contents here - {{foo}}.
     <survey-selector :surveys="surveys" @select="beginSurvey"/>
-    <feud-board v-if="answers.length != 0" :answers="answers" />
+    <feud-board
+      v-if="answers.length != 0"
+      :answers="answers"
+      @clickAnswer="flipAnswer"
+    />
   </div>
 </template>
 <script>
@@ -29,8 +32,15 @@ export default {
       console.log(`selected survey number ${survey.sid} to begin next round.`);
       API.post('/survey/begin', { sid: survey.sid }).then(res => {
         console.log(res);
-        this.answers = survey.answers;
+        this.answers = survey.answers.map(answer => {
+          return { ...answer, hidden: false, selected: false }
+        });
       });
+    },
+    flipAnswer: function(a) {
+      let existingAnswer = this.answers[a.index];
+      existingAnswer.hidden = !existingAnswer.hidden;
+      this.answers.splice(a.index, 1, {...existingAnswer})
     }
   },
   components: {
@@ -40,7 +50,7 @@ export default {
 }
 </script>
 
-    FeudBoard<style lang="scss" scoped>
+<style lang="scss" scoped>
 .control-board {
 
 }
