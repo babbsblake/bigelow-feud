@@ -4,8 +4,9 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        // when specifying paths for imports, allow usage of "src" root dir
-        src: path.resolve(__dirname, 'src')
+        // when specifying paths for imports, allow usage of root dirs instead of relative paths
+        src: path.resolve(__dirname, 'src'),
+        srv: path.resolve(__dirname, 'srv')
       }
     },
   },
