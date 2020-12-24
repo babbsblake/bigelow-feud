@@ -18,9 +18,9 @@
         <button @click="scoreTeam1">Add score to team 1</button>
       </div>
       <div class="x-container">
-        <button @click="showX">X</button>
-        <button @click="showXX">XX</button>
-        <button @click="showXXX">XXX</button>
+        <button @click="showX(1)">X</button>
+        <button @click="showX(2)">XX</button>
+        <button @click="showX(3)">XXX</button>
       </div>
       <div class="team2">
         <button @click="scoreTeam2">Add score to team 2</button>
@@ -119,14 +119,12 @@ export default {
         }
       })
     },
-    showX: function() {
-
-    },
-    showXX: function() {
-
-    },
-    showXXX: function() {
-
+    showX: function(howMany) {
+      API.post('/survey/showX', { howMany: howMany }).then(res => {
+        if (res.status != 200) {
+          console.log(res);
+        }
+      })
     }
   },
   components: {

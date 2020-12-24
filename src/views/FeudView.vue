@@ -1,5 +1,8 @@
 <template>
   <div class="feud-view">
+    <div class="x-container">
+      <div v-for="(x, index) in numX" :key="index" class="x">X</div>
+    </div>
     <score-board
       :question="question"
       :team1="team1"
@@ -29,6 +32,9 @@ export default {
     });
     Socket.on('score', team => {
       this.score(team);
+    });
+    Socket.on('showX', howMany => {
+      this.showX(howMany);
     })
   },
   data: function() {
@@ -41,6 +47,7 @@ export default {
       atStakeScore: 0,
       answers: [], // populated when a survey is selected on the command view,
                    // and a socket update is received
+      numX: 0,
     }
   },
   methods: {
@@ -75,6 +82,14 @@ export default {
       }
       this.answers = [];
       this.question = "";
+    },
+    showX: function(howMany) {
+      // TODO: play sound effect
+
+      this.numX = howMany;
+      setTimeout(() => {
+        this.numX = 0;
+      }, 3000)
     }
   },
   components: {
@@ -83,5 +98,35 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.feud-view {
+  position: relative;
+}
+.x-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  grid-gap: 20px;
+  text-align: center;
+  align-items: center;
 
+
+  .x {
+    font-size: 15em;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: red;
+    border-radius: 10px;
+    padding: 0px 25px;
+    box-shadow:
+      inset 0px 0px 0px 10px red,
+      inset 0px 0px 0px 18px rgb(121, 17, 17),
+      0px 4px 8px 4px rgb(49, 4, 4);
+    text-shadow:
+      0px 8px 0px rgb(121, 17, 17);
+    z-index: 3;
+  }
+}
 </style>

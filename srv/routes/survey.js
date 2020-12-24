@@ -55,4 +55,11 @@ router.post('/score', (req, res) => {
   res.sendStatus(200);
 })
 
+router.post('/showX', (req, res) => {
+  let howMany = req.body.howMany || 1;
+  console.log(`Showing ${howMany} X on feud view.`);
+  req.socket.emit('showX', howMany);
+  res.sendStatus(200);
+})
+
 export default router;
