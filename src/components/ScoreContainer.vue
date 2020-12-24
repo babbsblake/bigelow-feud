@@ -1,16 +1,22 @@
 <template>
   <div class="score-container">
-    {{ score }}
+    {{ display }}
   </div>
 </template>
 <script>
 export default {
   props: {
-    score: Number
+    score: Number,
+    zero: Boolean,
   },
   data: function() {
     return {
 
+    }
+  },
+  computed: {
+    display: function() {
+      return this.zero ? 0 : this.score;
     }
   }
 }

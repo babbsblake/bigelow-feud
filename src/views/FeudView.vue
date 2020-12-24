@@ -11,6 +11,7 @@
       :team2Score="team2Score"
       :scoringFilter="answer => !answer.hidden"
       :answers="answers"
+      :forceAtStakeZero="forceAtStakeZero"
       @updateScore="updateAtStakeScore"
     />
   </div>
@@ -48,6 +49,7 @@ export default {
       answers: [], // populated when a survey is selected on the command view,
                    // and a socket update is received
       numX: 0,
+      forceAtStakeZero: false,
     }
   },
   methods: {
@@ -68,6 +70,7 @@ export default {
     },
     beginSurvey: function(survey) {
       this.question = survey.question;
+      this.forceAtStakeZero = false;
       this.answers = survey.answers.map(answer => {
         return { ...answer, hidden: true, selected: false }
       })
@@ -80,8 +83,7 @@ export default {
       } else {
         console.log(`error... got a request from the server to score for team ${team}`);
       }
-      this.answers = [];
-      this.question = "";
+      this.forceAtStakeZero = true;
     },
     showX: function(howMany) {
       // TODO: play sound effect
