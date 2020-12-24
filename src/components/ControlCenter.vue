@@ -84,7 +84,11 @@ export default {
       this.team1Score = 0;
       this.team2Score = 0;
 
-      // API.post('/game/begin')
+      API.post('/game/new', {team1: this.team1, team2: this.team2}).then(res => {
+        if (res.status != 200) {
+          console.log(res);
+        }
+      })
     },
     updateAtStakeScore: function(newScore) {
       this.atStakeScore = newScore;
@@ -96,6 +100,11 @@ export default {
         answer.selected = false;
         return existingAnswer;
       })
+      API.post('/survey/score', {team: 1}).then(res => {
+        if (res.status != 200) {
+          console.log(res);
+        }
+      })
     },
     scoreTeam2: function() {
       this.team2Score += this.atStakeScore;
@@ -103,6 +112,11 @@ export default {
         let existingAnswer = answer;
         answer.selected = false;
         return existingAnswer;
+      })
+      API.post('/survey/score', {team: 2}).then(res => {
+        if (res.status != 200) {
+          console.log(res);
+        }
       })
     },
     showX: function() {

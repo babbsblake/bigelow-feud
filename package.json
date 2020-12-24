@@ -13,6 +13,8 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
+    "socket.io": "^3.0.4",
+    "socket.io-client": "^3.0.4",
     "vue": "^2.6.11",
     "vue-router": "^3.4.9"
   },

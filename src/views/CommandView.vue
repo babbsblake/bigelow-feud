@@ -1,6 +1,5 @@
 <template>
   <div class="command-view">
-    Command View
     <control-center />
   </div>
 </template>

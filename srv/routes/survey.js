@@ -1,6 +1,6 @@
 import express from 'express';
 import surveys from '../data/surveys.json';
-import { validateNotNull } from '../utils/requestUtils.js';
+import { validateNotNull, getSurvey } from '../utils/requestUtils.js';
 
 let router = express.Router();
 
@@ -16,12 +16,18 @@ router.post('/begin', (req, res) => {
   let sid = validateNotNull(req.body.sid, 'sid', res);
   let multiplier = req.body.multiplier || 1; // default to 1 if not supplied
 
-  console.log(`Beginning new round with sid=${sid} and multiplier=${multiplier}`);
+  let surveyInQuestion = getSurvey(sid);
+  if (surveyInQuestion == undefined) {
+    res.status(400).send(`Invalid input: sid ${sid} not found.`);
+  }
   
+  console.log(`Beginning new round with sid=${sid} and multiplier=${multiplier}`);
+
   // emit survey information to socket to update the feud view.
+  req.socket.emit('beginSurvey', surveyInQuestion);
 
   res.json({
-    sid: sid,
+    survey: surveyInQuestion,
     multiplier: multiplier
   });
 })
@@ -35,7 +41,17 @@ router.post('/reveal', (req, res) => {
   console.log(`Revealing answerNum=${answerNum}`);
 
   // emit reveal information to socket to update the feud view.
+  req.socket.emit('reveal', answerNum);
 
+  res.sendStatus(200);
+})
+
+// called from the control page to complete this survey round. “at-stake” points are added to the
+// selected team’s total.
+router.post('/score', (req, res) => {
+  let team = validateNotNull(req.body.team, 'team', res);
+  console.log(`Scoring for team ${team}`);
+  req.socket.emit('score', team);
   res.sendStatus(200);
 })
 
