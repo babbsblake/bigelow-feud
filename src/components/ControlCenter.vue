@@ -2,6 +2,16 @@
   <div class="control-center">
     <team-selector @submit="beginNewGame"/>
     <survey-selector :surveys="surveys" @select="beginSurvey"/>
+    <div class="force-update-score-container">
+      <div>Force update scores: </div>
+      <input type="text" v-model="team1ForceScore"/>
+      <input type="text" v-model="team2ForceScore"/>
+      <button @click="forceUpdateScores">FORCE update scores</button>
+    </div>
+    <div class="force-update-score-container">
+      <div>End the game: </div>
+      <button @click="gameOver">End game</button>
+    </div>
     <score-board
       :question="question"
       :team1="team1"
@@ -10,6 +20,7 @@
       :team2Score="team2Score"
       :scoringFilter="answer => answer.selected"
       :answers="answers"
+      :multiplier="roundMultiplier"
       @updateScore="updateAtStakeScore"
       @clickAnswer="flipAnswer"
     />
@@ -48,15 +59,19 @@ export default {
       team2: "",
       team1Score: 0,
       team2Score: 0,
+      team1ForceScore: 0,
+      team2ForceScore: 0,
       atStakeScore: 0,
       surveys: [], // will be populated by a /surveys GET call in mounted
       answers: [], // populated when a survey is selected and new round is successfully started
+      roundMultiplier: 1,
     }
   },
   methods: {
-    beginSurvey: function(survey) {
-      console.log(`selected survey number ${survey.sid} to begin next round.`);
-      API.post('/survey/begin', { sid: survey.sid }).then(res => {
+    beginSurvey: function(survey, multiplier) {
+      console.log(`selected survey number ${survey.sid} and multiplier ${multiplier} to begin next round.`);
+      this.roundMultiplier = multiplier;
+      API.post('/survey/begin', { sid: survey.sid, multiplier: multiplier }).then(res => {
         if (res.status == 200) {
           this.question = survey.question;
           this.answers = survey.answers.map(answer => {
@@ -125,6 +140,24 @@ export default {
           console.log(res);
         }
       })
+    },
+    forceUpdateScores: function() {
+      if (confirm(`Are you sure you want to force update scores to ${this.team1ForceScore} and ${this.team2ForceScore}?`)) {
+        API.post('/game/forceUpdateScore', {team1: this.team1ForceScore, team2: this.team2ForceScore}).then(res => {
+          if (res.status != 200) {
+            console.log(res);
+          }
+        })
+      }
+    },
+    gameOver: function() {
+      if (confirm(`Are you sure you want to end the game?`)) {
+        API.post('/game/end').then(res => {
+          if (res.status != 200) {
+            console.log(res);
+          }
+        })
+      }
     }
   },
   components: {
@@ -136,6 +169,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.force-update-score-container {
+  display: flex;
+  column-gap: 5px;
+  margin-bottom: 5px;
+
+  button {
+    color: red;
+  }
+}
 .scoring-controls {
   display: flex;
   align-items: center;

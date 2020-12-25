@@ -12,8 +12,12 @@
       :scoringFilter="answer => !answer.hidden"
       :answers="answers"
       :forceAtStakeZero="forceAtStakeZero"
+      :multiplier="roundMultiplier"
       @updateScore="updateAtStakeScore"
     />
+    <div v-if="gameOverText" class="end-game">
+      {{ gameOverText }}
+    </div>
   </div>
 </template>
 <script>
@@ -25,8 +29,8 @@ export default {
     Socket.on('beginGame', (team1, team2) => {
       this.beginGame(team1, team2);
     });
-    Socket.on('beginSurvey', (survey) => {
-      this.beginSurvey(survey)
+    Socket.on('beginSurvey', (survey, multiplier) => {
+      this.beginSurvey(survey, multiplier)
     });
     Socket.on('reveal', answerNum => {
       this.revealAnswer(answerNum);
@@ -36,6 +40,12 @@ export default {
     });
     Socket.on('showX', howMany => {
       this.showX(howMany);
+    });
+    Socket.on('forceUpdateScore', (team1, team2) => {
+      this.forceUpdateScores(team1, team2);
+    });
+    Socket.on('gameOver', () => {
+      this.gameOver();
     })
   },
   data: function() {
@@ -50,6 +60,8 @@ export default {
                    // and a socket update is received
       numX: 0,
       forceAtStakeZero: false,
+      gameOverText: null,
+      roundMultiplier: 1,
     }
   },
   methods: {
@@ -67,10 +79,12 @@ export default {
       this.team2 = team2;
       this.team1Score = 0;
       this.team2Score = 0;
+      this.gameOverText = null;
     },
-    beginSurvey: function(survey) {
+    beginSurvey: function(survey, multiplier) {
       this.question = survey.question;
       this.forceAtStakeZero = false;
+      this.roundMultiplier = multiplier;
       this.answers = survey.answers.map(answer => {
         return { ...answer, hidden: true, selected: false }
       })
@@ -92,6 +106,19 @@ export default {
       setTimeout(() => {
         this.numX = 0;
       }, 3000)
+    },
+    forceUpdateScores: function(team1, team2) {
+      this.team1Score = team1;
+      this.team2Score = team2;
+    },
+    gameOver: function() {
+      if (this.team1Score > this.team2Score) {
+        this.gameOverText = `Congratulations ${this.team1}, you won!`;
+      } else if (this.team2Score > this.team1Score) {
+        this.gameOverText = `Congratulations ${this.team2}, you won!`;
+      } else {
+        this.gameOverText = `It was a tie!! Everyone finish your drink.`;
+      }
     }
   },
   components: {

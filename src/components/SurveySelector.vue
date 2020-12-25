@@ -11,6 +11,8 @@
         {{survey.question}}
       </option>
     </select>
+    <div>with multiplier: </div>
+    <input type="number" v-model.number="multiplier" />
     <button @click="submitSurvey" :disabled="selectedSurvey == null">Begin round</button>
   </div>
 </template>
@@ -27,12 +29,13 @@ export default {
   },
   data: function() {
     return {
-      selectedSurvey: null
+      selectedSurvey: null,
+      multiplier: 1,
     }
   },
   methods: {
     submitSurvey: function() {
-      this.$emit('select', this.selectedSurvey);
+      this.$emit('select', this.selectedSurvey, this.multiplier);
     }
   }
 }

@@ -33,7 +33,8 @@ export default {
     team2Score: Number,
     scoringFilter: Function,
     answers: Array,
-    forceAtStakeZero: Boolean
+    forceAtStakeZero: Boolean,
+    multiplier: Number,
   },
   data: function() {
     return {
@@ -50,7 +51,7 @@ export default {
       let score = this.answers
         .filter(answer => this.scoringFilter(answer))
         .map(answer => answer.value)
-        .reduce((result, val) => result + val, 0);
+        .reduce((result, val) => result + (val * this.multiplier), 0);
       this.$emit('updateScore', score);
       return score;
     }

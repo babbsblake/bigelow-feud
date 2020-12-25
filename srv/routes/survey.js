@@ -24,7 +24,7 @@ router.post('/begin', (req, res) => {
   console.log(`Beginning new round with sid=${sid} and multiplier=${multiplier}`);
 
   // emit survey information to socket to update the feud view.
-  req.socket.emit('beginSurvey', surveyInQuestion);
+  req.socket.emit('beginSurvey', surveyInQuestion, multiplier);
 
   res.json({
     survey: surveyInQuestion,
