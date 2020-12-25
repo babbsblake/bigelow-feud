@@ -84,7 +84,7 @@ export default {
   watch: {
     activated: function(newVal) {
       if (newVal) {
-        this.lightUpNextDot();
+        this.beginLightUp();
       } else {
         this.curX = 0;
         this.curY = 0;

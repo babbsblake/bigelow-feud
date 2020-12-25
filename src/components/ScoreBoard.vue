@@ -3,20 +3,20 @@
     <div class="team-name team1">
       {{ team1 }}
     </div>
-    <score-container class="score-container score" :zero="forceAtStakeZero" :score="atStakeScore" />
+    <score-container class="score-container score" :activated="atStakeActivated" :zero="forceAtStakeZero" :score="atStakeScore" />
     <div class="team-name team2">
       {{ team2 }}
     </div>
     <div class="question-container">
       {{ question }}
     </div>
-    <score-container class="score-container team1" :score="team1Score" />
+    <score-container class="score-container team1" :activated="team1Activated" :score="team1Score" />
     <feud-board
       class="board"
       :answers="answers"
       @clickAnswer="clickAnswer"
     />
-    <score-container class="score-container team2" :score="team2Score" />
+    <score-container class="score-container team2" :activated="team2Activated" :score="team2Score" />
     <div class="spacer none1" />
     <div class="spacer none2" />
   </div>
@@ -35,6 +35,9 @@ export default {
     answers: Array,
     forceAtStakeZero: Boolean,
     multiplier: Number,
+    atStakeActivated: Boolean,
+    team1Activated: Boolean,
+    team2Activated: Boolean,
   },
   data: function() {
     return {

@@ -13,6 +13,9 @@
       :answers="answers"
       :forceAtStakeZero="forceAtStakeZero"
       :multiplier="roundMultiplier"
+      :atStakeActivated="atStakeActivated"
+      :team1Activated="team1Activated"
+      :team2Activated="team2Activated"
       @updateScore="updateAtStakeScore"
     />
     <div v-if="gameOverText" class="end-game">
@@ -71,6 +74,9 @@ export default {
       forceAtStakeZero: false,
       gameOverText: null,
       roundMultiplier: 1,
+      atStakeActivated: false,
+      team1Activated: false,
+      team2Activated: false,
     }
   },
   methods: {

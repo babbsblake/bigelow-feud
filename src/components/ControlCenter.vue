@@ -25,6 +25,9 @@
       :scoringFilter="answer => answer.selected"
       :answers="answers"
       :multiplier="roundMultiplier"
+      :atStakeActivated="atStakeActivated"
+      :team1Activated="team1Activated"
+      :team2Activated="team2Activated"
       @updateScore="updateAtStakeScore"
       @clickAnswer="flipAnswer"
     />
@@ -69,6 +72,9 @@ export default {
       surveys: [], // will be populated by a /surveys GET call in mounted
       answers: [], // populated when a survey is selected and new round is successfully started
       roundMultiplier: 1,
+      atStakeActivated: false,
+      team1Activated: false,
+      team2Activated: false,
     }
   },
   methods: {
@@ -172,7 +178,7 @@ export default {
           console.log(res);
         }
       })
-    }
+    },
   },
   components: {
     TeamSelector,
