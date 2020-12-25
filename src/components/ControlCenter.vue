@@ -146,6 +146,9 @@ export default {
         API.post('/game/forceUpdateScore', {team1: this.team1ForceScore, team2: this.team2ForceScore}).then(res => {
           if (res.status != 200) {
             console.log(res);
+          } else {
+            this.team1Score = this.team1ForceScore;
+            this.team2Score = this.team2ForceScore;
           }
         })
       }
