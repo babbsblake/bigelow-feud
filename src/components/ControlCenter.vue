@@ -32,16 +32,18 @@
       @clickAnswer="flipAnswer"
     />
     <div class="scoring-controls">
-      <div class="team1">
-        <button @click="scoreTeam1">Add score to team 1</button>
+      <div class="team">
+        <button class="score" @click="scoreTeam1">Add score to team 1</button>
+        <button class="activate" @click="activate(1)">Activate team 1</button>
       </div>
       <div class="x-container">
         <button @click="showX(1)">X</button>
         <button @click="showX(2)">XX</button>
         <button @click="showX(3)">XXX</button>
       </div>
-      <div class="team2">
-        <button @click="scoreTeam2">Add score to team 2</button>
+      <div class="team">
+        <button class="activate" @click="activate(2)">Activate team 2</button>
+        <button class="score" @click="scoreTeam2">Add score to team 2</button>
       </div>
     </div>
   </div>
@@ -144,6 +146,19 @@ export default {
         }
       })
     },
+    activate: function(team) {
+      API.post('/game/activate', {team: team}).then(res => {
+        if (res.status == 200) {
+          if (team == 1) {
+            this.team1Activated = !this.team1Activated;
+          } else {
+            this.team2Activated = !this.team2Activated;
+          }
+        } else {
+          console.log(res);
+        }
+      })
+    },
     showX: function(howMany) {
       API.post('/survey/showX', { howMany: howMany }).then(res => {
         if (res.status != 200) {
@@ -202,6 +217,16 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  .team {
+    display: flex;
+    column-gap: 5px;
+    .score {
+      color: green;
+    }
+    .activate {
+      color: rgb(153, 153, 12);
+    }
+  }
 }
 .x-container {
   display: flex;

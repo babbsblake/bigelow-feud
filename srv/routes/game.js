@@ -45,4 +45,12 @@ router.post('/forceUpdateScore', (req, res) => {
   res.sendStatus(200);
 })
 
+router.post('/activate', (req, res) => {
+  let team = validateNotNull(req.body.team, 'team', res);
+
+  console.log(`activating team ${team}`);
+  req.socket.emit('activate', team);
+  res.sendStatus(200);
+})
+
 export default router;

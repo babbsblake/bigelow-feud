@@ -57,6 +57,9 @@ export default {
     Socket.on('stopSound', () => {
       this.stopSound();
     })
+    Socket.on('activate', team => {
+      this.activate(team)
+    })
     this.audio = new Audio();
   },
   data: function() {
@@ -135,8 +138,10 @@ export default {
     gameOver: function() {
       if (this.team1Score > this.team2Score) {
         this.gameOverText = `Congratulations ${this.team1}, you won!`;
+        this.team1Activated = true;
       } else if (this.team2Score > this.team1Score) {
         this.gameOverText = `Congratulations ${this.team2}, you won!`;
+        this.team2Activated = true;
       } else {
         this.gameOverText = `It was a tie!! Everyone finish your drink.`;
       }
@@ -149,6 +154,19 @@ export default {
     },
     stopSound: function() {
       this.audio.pause();
+    },
+    activate: function(team) {
+      if (team == 1) {
+        this.team1Activated = !this.team1Activated;
+        if (this.team1Activated) {
+          this.playSound(Buzz);
+        }
+      } else {
+        this.team2Activated = !this.team2Activated;
+        if (this.team2Activated) {
+          this.playSound(Buzz);
+        }
+      }
     }
   },
   components: {
