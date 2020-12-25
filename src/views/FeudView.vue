@@ -23,6 +23,10 @@
 <script>
 import Socket from 'src/utils/Socket.js';
 import ScoreBoard from '../components/ScoreBoard.vue';
+import Theme from 'src/assets/theme.mp3';
+import Reveal from 'src/assets/reveal.mp3';
+import Strike from 'src/assets/strike.mp3';
+import Buzz from 'src/assets/buzz.mp3';
 
 export default {
   mounted: function() {
@@ -46,10 +50,15 @@ export default {
     });
     Socket.on('gameOver', () => {
       this.gameOver();
+    });
+    Socket.on('stopSound', () => {
+      this.stopSound();
     })
+    this.audio = new Audio();
   },
   data: function() {
     return {
+      audio: null,
       question: "",
       team1: "",
       team2: "",
@@ -65,6 +74,10 @@ export default {
     }
   },
   methods: {
+    debug: function() {
+      console.log("hi");
+      this.playSound(Buzz);
+    },
     updateAtStakeScore: function(newScore) {
       this.atStakeScore = newScore;
     },
@@ -73,6 +86,7 @@ export default {
       let existingAnswer = this.answers[index];
       existingAnswer.hidden = false;
       this.answers.splice(index, 1, existingAnswer);
+      this.playSound(Reveal);
     },
     beginGame: function(team1, team2) {
       this.team1 = team1;
@@ -80,6 +94,7 @@ export default {
       this.team1Score = 0;
       this.team2Score = 0;
       this.gameOverText = null;
+      this.playSound(Theme);
     },
     beginSurvey: function(survey, multiplier) {
       this.question = survey.question;
@@ -100,7 +115,7 @@ export default {
       this.forceAtStakeZero = true;
     },
     showX: function(howMany) {
-      // TODO: play sound effect
+      this.playSound(Strike);
 
       this.numX = howMany;
       setTimeout(() => {
@@ -119,6 +134,15 @@ export default {
       } else {
         this.gameOverText = `It was a tie!! Everyone finish your drink.`;
       }
+      this.playSound(Theme);
+    },
+    playSound: function(soundPath) {
+      this.audio.src = soundPath;
+      this.audio.load()
+      this.audio.play();
+    },
+    stopSound: function() {
+      this.audio.pause();
     }
   },
   components: {
@@ -140,6 +164,7 @@ export default {
   grid-gap: 20px;
   text-align: center;
   align-items: center;
+  pointer-events: none;
 
 
   .x {

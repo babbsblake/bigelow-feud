@@ -2,6 +2,10 @@
   <div class="control-center">
     <team-selector @submit="beginNewGame"/>
     <survey-selector :surveys="surveys" @select="beginSurvey"/>
+    <div class="flex">
+      <div>Stop sounds on feud view: </div>
+      <button @click="stopSound">Stop Sounds</button>
+    </div>
     <div class="force-update-score-container">
       <div>Force update scores: </div>
       <input type="text" v-model="team1ForceScore"/>
@@ -161,6 +165,13 @@ export default {
           }
         })
       }
+    },
+    stopSound: function() {
+      API.post('/game/stopSound').then(res => {
+        if (res.status != 200) {
+          console.log(res);
+        }
+      })
     }
   },
   components: {
@@ -190,5 +201,10 @@ export default {
   display: flex;
   justify-content: space-between;
   column-gap: 5px;
+}
+.flex {
+  display: flex;
+  column-gap: 5px;
+  margin-bottom: 5px;
 }
 </style>

@@ -28,6 +28,12 @@ router.post('/end', (req, res) => {
   res.sendStatus(200);
 })
 
+router.post('/stopSound', (req, res) => {
+  console.log(`emitting event to stop sounds.`);
+  req.socket.emit('stopSound');
+  res.sendStatus(200);
+})
+
 router.post('/forceUpdateScore', (req, res) => {
   let team1 = validateNotNull(req.body.team1, 'team1', res);
   let team2 = validateNotNull(req.body.team2, 'team2', res);
