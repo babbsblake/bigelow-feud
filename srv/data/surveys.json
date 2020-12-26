@@ -1,34 +1,193 @@
 {
   "surveys": [
     {
-      "sid": "123",
-      "question": "Name a thing that your husband...",
+      "sid": "1",
+      "question": "Name a gift kids don't want to open on Christmas morning",
       "answers": [
-        { "answer": "Wedding Ring", "value": 32 },
-        { "answer": "New Car", "value": 24 },
-        { "answer": "Dinner Plans", "value": 16 },
-        { "answer": "Board games", "value": 8 },
-        { "answer": "Toasted Coconut", "value": 6 },
-        { "answer": "Peppermint", "value": 4 }
-      ]
+       { "answer": "Underwear", "value": 31},
+       { "answer": "Socks", "value": 27},
+       { "answer": "Hygiene Products", "value": 12},
+       { "answer": "Books", "value": 6},
+       { "answer": "Knitted Sweater/Scarf", "value": 6},
+       { "answer": "Puzzles", "value": 2}
     },
     {
-      "sid": "456",
-      "question": "what's the biggest thing...",
+      "sid": "2",
+      "question": "Name a state someone might travel to for Christmas",
       "answers": [
-        { "answer": "Wedding Ring", "value": 32 },
-        { "answer": "New Car", "value": 15 },
-        { "answer": "Dinner Plans", "value": 8 }
-      ]
+       { "answer": "HI", "value": 35},
+       { "answer": "NY", "value": 23},
+       { "answer": "FL", "value": 11},
+       { "answer": "CO", "value": 7},
+       { "answer": "AK", "value": 6},
+       { "answer": "IL", "value": 4},
+       { "answer": "WA", "value": 2},
     },
     {
-      "sid": "789",
-      "question": "name a holiday that...",
+      "sid": "3",
+      "question": "Name a Christmas Eve tradition for families",
       "answers": [
-        { "answer": "Wedding Ring", "value": 32 },
-        { "answer": "New Car", "value": 15 },
-        { "answer": "Dinner Plans", "value": 8 }
-      ]
-    }
+       { "answer": "Opening one present", "value": 35},
+       { "answer": "Dinner at Grandma's", "value": 20},
+       { "answer": "Going to church", "value": 11},
+       { "answer": "Reading the Bible story", "value": 7},
+       { "answer": "Putting the cookies out for Santa", "value": 6},
+       { "answer": "Looking at Christmas lights", "value": 4},
+       { "answer": "Watching Christmas movies", "value": 3}
+    },
+    {
+      "sid": "4",
+      "question": "Name a gift that's difficult to wrap",
+      "answers": [
+       { "answer": "Basketball", "value": 34},
+       { "answer": "Football", "value": 19},
+       { "answer": "Stuffed Animals", "value": 14},
+       { "answer": "A pet", "value": 7},
+       { "answer": "A bike", "value": 6},
+    },
+    {
+      "sid": "5",
+      "question": "Name a place that's open on Christmas Day",
+      "answers": [
+       { "answer": "Walmart/Grocery Store", "value": 23},
+       { "answer": "Gas Station", "value": 20},
+       { "answer": "McDonald's/Fast Food", "value": 19},
+       { "answer": "Waffle House/Denny's", "value": 12},
+       { "answer": "Movie Theater", "value": 8},
+       { "answer": "Airport", "value": 5},
+       { "answer": "Hospital", "value": 3},
+       { "answer": "Hotel", "value": 2},
+    },
+    {
+      "sid": "6",
+      "question": "Name a classic kid's Christmas movie",
+      "answers": [
+       { "answer": "Home Alone", "value": 23},
+       { "answer": "Elf", "value": 22},
+       { "answer": "The Grinch", "value": 14},
+       { "answer": "Charlie Brown Christmas", "value": 9},
+       { "answer": "A Christmas Story", "value": 8},
+       { "answer": "Frosty the Snowman", "value": 6},
+       { "answer": "Rudolph the Red-Nosed Reindeer", "value": 5},
+    },
+    {
+      "sid": "7",
+      "question": "Name a dessert people eat a lot of at Christmas time",
+      "answers": [
+       { "answer": "Cookies", "value": 54},
+       { "answer": "Pie", "value": 12},
+       { "answer": "Pudding", "value": 7},
+       { "answer": "Fruitcake", "value": 6},
+       { "answer": "Fudge", "value": 5},
+       { "answer": "Candy/Candy Canes", "value": 4},
+       { "answer": "Gingerbread", "value": 2},
+    },
+    {
+      "sid": "8",
+      "question": "Name something you might eat with a hamburger",
+      "answers": [
+       { "answer": "French Fries", "value": 60},
+       { "answer": "Soup", "value": 12},
+       { "answer": "Salad", "value": 9},
+       { "answer": "Onion Rings", "value": 5},
+       { "answer": "Tater Tots", "value": 5},
+       { "answer": "Pickles", "value": 3},
+    },
+    {
+      "sid": "9",
+      "question": "Name something you haven't done since high school gym class",
+      "answers": [
+       { "answer": "Run a mile", "value": 25},
+       { "answer": "Dodgeball", "value": 23},
+       { "answer": "Pushups", "value": 21},
+       { "answer": "Sit-ups / Crunches", "value": 9},
+       { "answer": "Lift weights", "value": 8},
+       { "answer": "Swim laps", "value": 5},
+       { "answer": "Changed in a locker room", "value": 3},
+       { "answer": "Tennis", "value": 2},
+       { "answer": "Exercised", "value": 2},
+    },
+    {
+      "sid": "10",
+      "question": "How much do you tip for good service?",
+      "answers": [
+       { "answer": "20%", "value": 39},
+       { "answer": "15%", "value": 22},
+       { "answer": "25%", "value": 18},
+       { "answer": "18%", "value": 8},
+       { "answer": "$20", "value": 7},
+       { "answer": "10%", "value": 2},
+    },
+    {
+      "sid": "11",
+      "question": "Name something that breaks down",
+      "answers": [
+       { "answer": "Car", "value": 44},
+       { "answer": "Body", "value": 22},
+       { "answer": "Computer", "value": 17},
+       { "answer": "Communication", "value": 7},
+       { "answer": "Foregin Relations", "value": 2},
+       { "answer": "TV", "value": 2},
+    },
+    {
+      "sid": "12",
+      "question": "Name a famous wizard",
+      "answers": [
+       { "answer": "Harry Potter", "value": 37},
+       { "answer": "Merlin", "value": 26},
+       { "answer": "Gandalf", "value": 11},
+       { "answer": "Dr. Strange", "value": 9},
+       { "answer": "The Wizard of Oz", "value": 8},
+       { "answer": "Voldemort", "value": 3},
+       { "answer": "Newt Scamander", "value": 2},
+    },
+    {
+      "sid": "13",
+      "question": "Name something a young man might have in his tattoo",
+      "answers": [
+       { "answer": "Mom", "value": 33},
+       { "answer": "Wife / Girlfriend", "value": 25},
+       { "answer": "Child", "value": 14},
+       { "answer": "God", "value": 10},
+       { "answer": "Father", "value": 6},
+       { "answer": "Grandparent", "value": 5},
+       { "answer": "Pet", "value": 2}
+    },
+    {
+      "sid": "14",
+      "question": "Name an Olympic sport you'd watch more often if it were played in the nude",
+      "answers": [
+       { "answer": "Volleyball", "value": 21},
+       { "answer": "Gymnastics", "value": 20},
+       { "answer": "Swimming", "value": 20},
+       { "answer": "Soccer", "value": 18},
+       { "answer": "Wrestling", "value": 7},
+       { "answer": "Tennis", "value": 5},
+       { "answer": "Track / Field", "value": 3},
+    },
+    {
+      "sid": "15",
+      "question": "Name somewhere you might hide something to smuggle it into prision",
+      "answers": [
+       { "answer": "In a cake", "value": 31},
+       { "answer": "Up your butt", "value": 30},
+       { "answer": "Underwear", "value": 10},
+       { "answer": "Bra", "value": 9},
+       { "answer": "Shoe", "value": 5},
+       { "answer": "Socks", "value": 3},
+       { "answer": "Bribe / With Guard", "value": 3},
+       { "answer": "Hair", "value": 2},
+    },
+    {
+      "sid": "16",
+      "question": "Name a part of the body people see a plastic surgeon about",
+      "answers": [
+       { "answer": "Boobs", "value": 30},
+       { "answer": "Nose", "value": 18},
+       { "answer": "Belly", "value": 16},
+       { "answer": "Lips", "value": 12},
+       { "answer": "Butt", "value": 8},
+       { "answer": "Face / Forehead", "value": 6},
+    },
   ]
 }
